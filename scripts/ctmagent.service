@@ -1,0 +1,13 @@
+[Unit]
+Description=CtMagent
+After=syslog.target network.target network-online.target remote-fs.target
+
+[Service]
+Type=simple
+ExecStart=/ctmagent/ctm/scripts/start-ag -u ctmagent -p ALL
+ExecStop=/ctmagent/ctm/scripts/shut-ag -u ctmagent -p ALL
+ExecStop=/bin/killall -v -s 9 p_ctmag
+RemainAfterExit=yes
+
+[Install]
+WantedBy=default.target
